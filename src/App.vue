@@ -1,26 +1,29 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<template lang="pug">
+app-header
+
+div.error(v-if="error") {{ error }}
+
+router-view(v-slot="{ Component }" v-if="!error")
+  transition(name="slide" mode="out-in")
+    component(:is="Component")
+
+app-footer
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState } from 'vuex';
+
+import AppHeader from '@/components/Header.vue';
+import AppFooter from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    'app-header': AppHeader,
+    'app-footer': AppFooter,
+  },
+  computed: {
+    ...mapState(['error']),
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
