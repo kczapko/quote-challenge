@@ -58,10 +58,12 @@ header svg {
   width: 2.2rem;
   fill: #4f4f4f;
   margin-left: 0.8rem;
+  animation: loading 1s linear infinite;
+  animation-play-state: paused;
 }
 
 header svg.loading {
-  animation: loading 1s linear infinite;
+  animation-play-state: running;
 }
 
 footer {
